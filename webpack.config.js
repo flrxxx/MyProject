@@ -45,6 +45,9 @@ module.exports ={
                 use:[
                     'vue-style-loader','css-loader','less-loader'
                 ]
+            },{
+                test:/.(jpg|png)$/,
+                use:['url-loader']
             }
         ]
     },resolve:{
