@@ -1,0 +1,32 @@
+.footer {
+  display: block;
+  background-color: #fff;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+}
+.footer .footcontent {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+.footer .footcontent .footlink {
+  margin-bottom: 10px;
+}
+.footer .footcontent .footlink a {
+  color: #1d84d9;
+  display: inline-block;
+  padding: 0px 20px;
+  text-decoration: none;
+}
+.footer .footcontent .footlink a:hover,
+.footer .footcontent .footlink a.router-link-active {
+  text-decoration: none;
+}
+.footer .footcontent .footlink a + a {
+  border-left: 1px solid #ddd;
+}
+.footer .footcontent .footinfo {
+  color: #999;
+}
+/*# sourceMappingURL=footer.css.map */

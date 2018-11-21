@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import App from './app.vue';
 import router from './router/router';
-import Element from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(Element);
+import 'element-ui/lib/theme-chalk/index.css'
+import {DatePicker} from 'element-ui';
 
+
+Vue.use(DatePicker)
 
 var app1 =new Vue({
     router,

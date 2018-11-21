@@ -1,26 +1,24 @@
 <template>
-
     <div id="app">
         <router-view></router-view>
     </div>
 </template>
 <script>
-
-    var childsss = {
-        props:['child'],
-        template:"<div style='background-color: #6f68dd; color:#000'>我是一个局部注册的组件</div>"
-    }
     export default {
         name:'App',
     }
 </script>
 
 <style>
-    *{
-        padding:0;
+    @import './less/fonticon.css';
+    body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
         margin: 0;
+        padding: 0;
+    }
+    *{
         font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     }
+
     html,body{
         height: 100%;
     }
@@ -30,5 +28,9 @@
     img{
         width: 100%;
         display:block;
+    }
+    a{
+        color: #000;
+        text-decoration: none;
     }
 </style>

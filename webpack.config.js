@@ -24,7 +24,7 @@ module.exports ={
                 test:/\.css$/,
                 use:['style-loader','css-loader',]
             },{
-                test:/\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                test:/\.(woff2?|eot|ttf|otf|jpg|png|svg)(\?.*)?$/,
                 loader:"url-loader",
                 options:{
                     limit:10000,
@@ -45,9 +45,6 @@ module.exports ={
                 use:[
                     'vue-style-loader','css-loader','less-loader'
                 ]
-            },{
-                test:/.(jpg|png)$/,
-                use:['url-loader']
             }
         ]
     },resolve:{
