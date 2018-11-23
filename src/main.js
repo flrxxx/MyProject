@@ -7,7 +7,7 @@ import {DatePicker} from 'element-ui';
 
 Vue.use(DatePicker)
 
-var app1 =new Vue({
+var app =new Vue({
     router,
     el:"#app",
     template:'<App/>',

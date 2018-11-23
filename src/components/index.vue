@@ -1,75 +1,271 @@
 <template>
-    <div class="main">
-        <headinfo :header="header"></headinfo>
-        <div class="pagecontent">
-            <router-view></router-view>
+    <div class="PageBody">
+        <div class="title">控制台 Dasgboard</div>
+        <div class="pancl-lr">
+            <div class="col-4">
+                <AnimationBox>
+                    <div class="title" :title="mechanism.title" slot="title">{{mechanism.title}}</div>
+                    <selfbar slot="content" :selfbar="mechanism"></selfbar>
+                </AnimationBox>
+            </div>
+            <div class="col-4">
+                <AnimationBox>
+                    <div class="title" :title="personnel.title" slot="title">{{personnel.title}}</div>
+                    <selfbar slot="content" :selfbar="personnel"></selfbar>
+                </AnimationBox>
+            </div>
+            <div class="col-4">
+                <AnimationBox>
+                    <div class="title" :title="Signing.title" slot="title">{{Signing.title}}</div>
+                    <selfbar slot="content" :selfbar="Signing"></selfbar>
+                </AnimationBox>
+            </div>
+            <div class="col-12">
+                <AnimationBox>
+                    <div class="title" :title="Chartinfo.title" slot="title">{{Chartinfo.title}}</div>
+                    <EchartLine slot="content" :ChartID="Chartinfo.ChartID" :ChartOptions="Chartinfo.ChartOptions"></EchartLine>
+                    <div class="fotstxt" slot="foot">
+                        <font><label>2018年签约：</label>{{Chartinfo.yeartotal}}人</font>
+                        <font><label>累计签约量：</label>{{Chartinfo.alltotal}}人</font>
+                    </div>
+                </AnimationBox>
+            </div>
         </div>
-        <footinfo :footinfo="footinfo"></footinfo>
     </div>
 </template>
 
 <script>
-    import headinfo from './header.vue';
-    import footinfo from './footer.vue';
+    import selfbar from './chart/selfbar.vue';
+    import AnimationBox from './chart/AnimationBox.vue';
+    import EchartLine from './chart/EchartLine.vue';
     export default {
         name: "index",
         data(){
             return {
-                header:{
-                    logo:{
-                        logoimg:require('../image/logo.png'),
-                        logotitle:'基层医疗卫生服务管理平台'
-                    },
-                    nav:[
+                mechanism:{
+                    title:'平台医疗机构数量',
+                    data:[
                         {
-                            text:'首页',
-                            icon:require('../image/icon_1.png'),
-                            path:'/index'
-                        },{
-                            text:'签约统计',
-                            icon:require('../image/icon_2.png'),
-                            path:'/Contract'
-                        },{
-                            text:"公卫统计",
-                            icon:require('../image/icon_3.png'),
-                            path:'/PublicHealth'
-                        },{
-                            text:"医疗服务统计",
-                            icon:require('../image/icon_4.png'),
-                            path:'/MedicalService'
-                        },{
-                            text:"分级诊疗统计",
-                            icon:require('../image/icon_5.png'),
-                            path:'/Diagnosis'
-                        },{
-                            text:"蓝卡特色统计",
-                            icon:require('../image/icon_6.png'),
-                            path:'/Characteristic'
-                        },{
-                            text:"绩效统计",
-                            icon:require('../image/icon_7.png'),
-                            path:'/Achievements'
+                            total:30,
+                            num:12,
+                            color:"#6c94f3",
+                            text:"已纳入统计数量"
+                        },
+                        {
+                            total:30,
+                            num:21,
+                            color:"#4ea7e9",
+                            text:"未纳入统计数量"
                         }
-                    ],
-                    user:{
-                        userimg:require('../image/user.png'),
-                        username:'测试账号',
-                        useraddress:'沈阳金豪研发中心沈阳金豪研发中心',
-                        logouturl:'/login'
-                    }
+                    ]
                 },
-                footinfo:{
-                    helpurl:'/indexsss',
-                    docurl:'/indexsss'
+                personnel:{
+                    title:'平台服务人员数量',
+                    data:[
+                        {
+                            total:1000,
+                            num:245,
+                            color:"#f6a060",
+                            text:"医生数量"
+                        },
+                        {
+                            total:240,
+                            num:189,
+                            color:"#f5c243",
+                            text:"护士数量"
+                        },
+                        {
+                            total:160,
+                            num:121,
+                            color:"#ede25c",
+                            text:"其他人员数量"
+                        }
+                    ]
+                },
+                Signing:{
+                    title:'平台签约会员数量 (2018年度)',
+                    data:[
+                        {
+                            total:100000,
+                            num:100,
+                            color:"#57bf9b",
+                            text:"辖区人口数"
+                        },
+                        {
+                            total:3000000,
+                            num:15000051,
+                            color:"#a7db9c",
+                            text:"签约人数"
+                        },
+                        {
+                            total:350000,
+                            num:150000,
+                            color:"#a1daca",
+                            text:"签约重点人群数"
+                        }
+                    ]
+                },
+                Chartinfo:{
+                    title:'家庭医生签约服务统计',
+                    yeartotal:'53,319',
+                    alltotal:'86,392',
+                    ChartID:'linechart',
+                    ChartOptions:{
+                        tooltip: {
+                            trigger: 'none',
+                            axisPointer: {
+                                type: 'cross',
+                                label:{
+                                    margin:20,
+                                    fontFamily:'"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif',
+                                    fontSize:14,
+                                    backgroundColor:'#1d84d9',
+                                    shadowBlur:0
+                                },
+                                crossStyle:{
+                                    color:'#1d84d9'
+                                }
+                            },
+
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月','八月','九月','十月','十一月','十二月'],
+                            axisLabel:{
+                                textStyle:{
+                                    fontFamily:'"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif',
+                                    fontSize:14,
+                                    color:'#666',
+                                },
+                                margin:20,
+                            },
+                            axisLine: {
+                                onZero: false,
+                                lineStyle: {
+                                    color: '#1d84d9',
+                                }
+                            }
+                        },
+
+                        yAxis: {
+                            type: 'value',
+                            axisLabel:{
+                                textStyle:{
+                                    fontFamily:'"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif',
+                                    fontSize:16,
+                                    color:'#666',
+                                }
+                            }
+                        },
+                        grid:{
+                            left: '80',   // 与容器左侧的距离
+                            right: '50', // 与容器右侧的距离
+                            top:'10%',
+                            bottom:'10%'
+                        },
+                        series: [{
+                            data: [{
+                                value:55352,
+                                label:{
+                                    align: 'left',
+                                }
+                            },{
+                                value:65454,
+                            },{
+                                value:80901,
+                            },{
+                                value:25934,
+                            },{
+                                value:41290,
+                            },{
+                                value:71330,
+                            },{
+                                value:91320,
+                            },{
+                                value:63652,
+                            },{
+                                value:95121,
+                            },{
+                                value:50000,
+                            },{
+                                value:42157,
+                            },{
+                                value:54834,
+                            }],
+                            type: 'line',
+                            smooth: true,
+                            symbolSize:10,
+                            areaStyle:{
+                                color:'#ddeaff'
+                            },
+                            itemStyle:{
+                                color:"#1d84d9"
+                            },
+                            lineStyle:{
+                                width:3
+                            },
+                            label: {
+                                normal: {
+                                    distance:10,
+                                    fontFamily: '"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif',
+                                    show: true,
+                                    position: 'top',
+                                    fontSize: 16,
+                                    align: 'center',
+                                    fontWeight:'bold'
+                                }
+                            }
+                        }]
+                    },
                 }
             }
         },
-        components:{headinfo,footinfo}
+        components:{selfbar,AnimationBox,EchartLine}
     }
 </script>
-<style scoped>
-    .pagecontent{
-        background-color: #dee6ee;
+<style scoped lang="less">
+    .PageBody{
+        padding: 15px 30px;
+    }
+    .title{
+        margin-bottom: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        color:#333;
+    }
+    .pancl-lr{
+        margin: 0 -15px;
+    }
+    .pancl-lr:after{
+        display: block;
+        clear:both;
+        content:"";
+    }
+    .col-4{
+        width: 33.33333%;
+        padding:0px 15px;
+        float: left;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+    .col-12{
+        width: 100%;
+        padding:0px 15px;
+        float: left;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+    .fotstxt{
+        font-size: 16px;
+        text-align: center;
+        padding-top: 25px;
+        font{
+            padding: 0 15px;
+            label{
+                color:#999;
+            }
+        }
     }
 </style>
 

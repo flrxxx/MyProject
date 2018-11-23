@@ -21,10 +21,16 @@ var router = new Router({
             component:notFound
         },
         {
-            path:'/index',
-            name:'index',
-            component:resolve => require(['../components/index.vue'],resolve),
+            path:'/main',
+            name:'main',
+            redirect: '/index',
+            component:resolve => require(['../components/main.vue'],resolve),
             children:[
+                {
+                    path:'/index',
+                    name:'index',
+                    component:resolve => require(['../components/index.vue'],resolve),
+                },
                 {
                     path:'/Contract',
                     name:'Contract',
