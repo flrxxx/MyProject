@@ -33,4 +33,7 @@
         color: #000;
         text-decoration: none;
     }
+    ul,li{
+        list-style: none;
+    }
 </style>

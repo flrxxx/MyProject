@@ -26,11 +26,11 @@
                             icon:require('../image/icon_1.png'),
                             path:'/index'
                         },{
-                            text:'签约统计',
+                            text:'过度组件',
                             icon:require('../image/icon_2.png'),
                             path:'/Contract'
                         },{
-                            text:"公卫统计",
+                            text:"动态组件",
                             icon:require('../image/icon_3.png'),
                             path:'/PublicHealth'
                         },{
@@ -67,9 +67,16 @@
         components:{headinfo,footinfo}
     }
 </script>
-<style scoped>
+<style >
     .pagecontent{
         background-color: #dee6ee;
+        padding: 15px 30px;
+    }
+    .title{
+        margin-bottom: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        color:#333;
     }
 </style>
 

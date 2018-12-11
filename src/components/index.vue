@@ -36,7 +36,7 @@
 
 <script>
     import selfbar from './chart/selfbar.vue';
-    import AnimationBox from './chart/AnimationBox.vue';
+
     import EchartLine from './chart/EchartLine.vue';
     export default {
         name: "index",
@@ -221,19 +221,12 @@
                 }
             }
         },
-        components:{selfbar,AnimationBox,EchartLine}
+        components:{selfbar,EchartLine}
     }
 </script>
 <style scoped lang="less">
-    .PageBody{
-        padding: 15px 30px;
-    }
-    .title{
-        margin-bottom: 15px;
-        font-size: 24px;
-        font-weight: bold;
-        color:#333;
-    }
+
+
     .pancl-lr{
         margin: 0 -15px;
     }
