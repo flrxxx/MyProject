@@ -11,6 +11,14 @@
                     <div>component1</div>
                     <div>component2</div>
                     <component :is="item.name" v-for="item in allComponents" :data="item.data"  class="whatareyou" style="border:1px solid #197fd3" name="dtzj"></component>
+                    <input type="text" v-model='totalMoney'>
+                    <div>{{ totalMoney | formatMoney('元')}}</div>
+
+                    <div>{{count}}</div>
+                    <div>
+                        <button @click="incerment">+</button>
+                        <button @click="decrment">-</button>
+                    </div>
                 </div>
             </AnimationBox>
         </div>
@@ -26,6 +34,7 @@
             return {
                 allComponents: [],
                 componentName: '',
+                totalMoney:500,
                 componentObject:{},
                 componentData:{
                     component1:{
@@ -39,6 +48,26 @@
                     }
                 },
                 data :{},
+
+            }
+        },
+        computed:{
+          count(){
+              return this.$store.state.count
+          }
+        },
+
+        filters:{       //过滤器
+            formatMoney:function(value,v,t){
+                if(value){
+                    value = parseInt(value);
+                    if(value){
+                        return "￥"+value.toFixed(2) + v;
+                    }
+
+                }else{
+                    console.log(value)
+                }
 
             }
         },
@@ -61,8 +90,13 @@
                     this.componentName = '';
                 }
 
+            },
+            incerment(){
+                this.$store.commit('increment')
+            },
+            decrment(){
+                this.$store.commit('decrment')
             }
-
         }
     }
 </script>
