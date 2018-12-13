@@ -8,5 +8,8 @@
         "styleLibraryName": "theme-chalk"
       }
     ]
+  ],
+  "plugins": [
+    ["transform-object-rest-spread", { "useBuiltIns": true }]
   ]
 }

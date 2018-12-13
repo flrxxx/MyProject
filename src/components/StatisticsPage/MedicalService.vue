@@ -15,10 +15,14 @@
                     <div>{{ totalMoney | formatMoney('元')}}</div>
 
                     <div>{{count}}</div>
+
                     <div>
-                        <button @click="incerment">+</button>
-                        <button @click="decrment">-</button>
+                        <button @click="incerment" style="width: 50px; height: 50px;">+</button>
+                        <button @click="decrment" style="width: 50px; height: 50px;">-</button>
                     </div>
+                    <div v-for="item in history">{{item}}</div>
+                    <div>{{doneTodosCount}}</div>
+                    <div>只有数组才能使用v-for      {{doneTodosById.id}}{{doneTodosById.text}}</div>
                 </div>
             </AnimationBox>
         </div>
@@ -28,6 +32,7 @@
 <script>
     import component1 from '../com/component1.vue'
     import component2 from '../com/component2.vue'
+    import {mapState} from 'vuex'
     export default {
         name: "MedicalService",
         data: function() {
@@ -52,11 +57,15 @@
             }
         },
         computed:{
-          count(){
-              return this.$store.state.count
-          }
+            doneTodosCount(){
+                return this.$store.getters.doneTodosCount
+            },
+            doneTodosById(){
+                console.log(typeof this.$store.getters.doneTodoById('2w'))
+                return this.$store.getters.doneTodoById('2w');
+            },
+            ...mapState(['count','history']),
         },
-
         filters:{       //过滤器
             formatMoney:function(value,v,t){
                 if(value){
@@ -95,7 +104,7 @@
                 this.$store.commit('increment')
             },
             decrment(){
-                this.$store.commit('decrment')
+                this.$store.commit('decrement')
             }
         }
     }
