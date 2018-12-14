@@ -22,7 +22,8 @@
                     </div>
                     <div v-for="item in history">{{item}}</div>
                     <div>{{doneTodosCount}}</div>
-                    <div>只有数组才能使用v-for      {{doneTodosById.id}}{{doneTodosById.text}}</div>
+                    <div>只有数组才能使用v-for {{doneTodosById.id}}{{doneTodosById.text}}</div>
+                    <div v-for="item in doneTodosText">{{item.text}}</div>
                 </div>
             </AnimationBox>
         </div>
@@ -33,6 +34,7 @@
     import component1 from '../com/component1.vue'
     import component2 from '../com/component2.vue'
     import {mapState} from 'vuex'
+    import {mapGetters} from 'vuex'
     export default {
         name: "MedicalService",
         data: function() {
@@ -57,13 +59,15 @@
             }
         },
         computed:{
-            doneTodosCount(){
-                return this.$store.getters.doneTodosCount
-            },
+
+            // doneTodosCount(){
+            //     return this.$store.getters.doneTodosCount
+            // },
             doneTodosById(){
                 console.log(typeof this.$store.getters.doneTodoById('2w'))
                 return this.$store.getters.doneTodoById('2w');
             },
+            ...mapGetters(['doneTodosCount','doneTodosText']),
             ...mapState(['count','history']),
         },
         filters:{       //过滤器
@@ -101,7 +105,7 @@
 
             },
             incerment(){
-                this.$store.commit('increment')
+                this.$store.dispatch('increment')
             },
             decrment(){
                 this.$store.commit('decrement')
