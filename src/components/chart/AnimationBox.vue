@@ -24,16 +24,21 @@
     }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
     .selfbar {
         background-color: #fff;
         border-radius: 4px;
         padding: 30px;
         .title {
-            font-size: 18px;
+            font-size: 20px;
             color: #555;
             font-weight: bold;
-            margin-bottom: 0px;
+            margin-bottom: 15px;
+            height: 34px;
+            line-height: 34px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     .slide-fade-enter-active {

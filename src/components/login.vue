@@ -1,8 +1,8 @@
 <template>
-    <div class="main">
+    <div class="main" >
         <div class="loginheader">
             <div class=" loginbox">
-                <div class="logoimg logotext"><img src="http://www.lk.cn/themes/simplicity/images/logoimg2.png" width="81"
+                <div class="logoimg logotext"><img src="../image/logoimg2.png" width="81"
                                                    height="58"></div>
                 <div class="logintext">
                     <p class="loginstext">滨海新区</p>
@@ -18,14 +18,14 @@
                         <div class="logintitle">欢迎登录</div>
                         <div class="logininput">
                             <i class="xzlicon-font xzliconz-my"></i>
-                            <input type="text" id="email" maxlength="30" placeholder="请输入账号">
+                            <input type="text" v-model="from.email" id="email" maxlength="30" placeholder="请输入账号">
                         </div>
                         <div class="logininput" style="margin-bottom: 40px;">
                             <i class="xzlicon-font xzliconz-lock"></i>
-                            <input type="password" id="password" maxlength="30" placeholder="请输入密码">
+                            <input type="password" v-model="from.password" id="password" maxlength="30" placeholder="请输入密码">
                         </div>
                         <div class="loginbtn" style="width: 150px;">
-                            <button v-on:click="login" class="btn btn-blue" >登录</button>
+                            <el-button type="primary" :loading="loginloading" @click.prevent="login" >{{logintext}}</el-button>
                         </div>
                     </div>
                 </div>
@@ -40,6 +40,8 @@
 
 <script>
     import footinfo from './footer.vue';
+    import * as login from '../system/login';
+
     export default {
         name: "login",
         components:{footinfo},
@@ -48,13 +50,62 @@
                 footinfo:{
                     helpurl:'/indexsss',
                     docurl:'/indexsss'
-                }
+                },
+                from:{
+                    email:'',
+                    password:'',
+                },
+                loginloading:false,
+                logintext:"登录"
             }
         },
         methods:{
             login:function(){
-                this.$router.push({name:'index'});
+                let data;
+                this.loginloading = true;
+                this.logintext = '登录中';
+                data = {
+                    ...this.from
+                }
+                setTimeout(()=>{
+                   this.loginint(data);
+                },1000)
+            },
+            loginint:function(data){
+                let backdata,backmsg;
+                backdata = login.loginin(data);
+                if( backdata.email != ''){
+                    this.$store.commit('changname',backdata.email);
+                }
+                backmsg = '欢迎回来，'+this.$store.state.user.username ;
+                this.$message({
+                    message: backmsg,
+                    type: 'success'
+                });
+                this.$router.push('main');
             }
+        },
+        created(){
+            const self = this;
+            const keyuplogin = function(){
+                if(event.keyCode == '13' && !this.loginloading){
+                    console.log('键盘事件')
+                    let data;
+                    self.loginloading = true;
+                    self.logintext = '登录中';
+                    data ={
+                        ...self.from
+                    }
+                    setTimeout(()=>{
+                        self.loginint(data);
+                    },1000)
+                    document.removeEventListener('keyup',keyuplogin)
+                }
+            }
+            document.addEventListener('keyup',keyuplogin);
+        },
+        beforeDestroy(){
+            // window.removeEventListener('keyup',keyuplogin)
         }
     }
 </script>
@@ -134,7 +185,7 @@
         min-height: 480px;
         padding-top: 60px;
         padding-bottom: 60px;
-        background-image: url('http://www.lk.cn/themes/simplicity/images/loginbg.png');
+        background-image: url('../image/loginbg.png');
     }
 
     .loginbody img {
@@ -166,7 +217,7 @@
         width: 549px;
         height: 560px;
         max-height: 560px;
-        background-image: url("http://www.lk.cn/themes/simplicity/images/loginleft.png");
+        background-image: url("../image/loginleft.png");
         background-repeat: no-repeat;
     }
 

@@ -13,6 +13,7 @@ module.exports ={
         historyApiFallback: true,
         inline: true//实时刷新
     },
+    mode: 'development',
     module:{
         rules:[
             {

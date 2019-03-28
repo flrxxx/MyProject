@@ -2,30 +2,56 @@
     <div class="barbox">
         <div class="selfbarbox">
             <div class="barfull" v-for="item in selfbar.data" >
-                <div class="bardatatext" :style="{color:item.color,bottom:item.height + '%'}">{{item.formatNum}}</div>
+                <div class="bardatatext" :style="{color:item.color,bottom:item.height + '%'}" :id="item.id">{{item.formatNum}}</div>
                 <div class="barbox"  :title="item.formatNum">
 
-                    <div class="bardatabox" :style="{backgroundColor:item.color,height:item.height + '%'}"></div>
+                    <transition
+                            v-on:before-enter="beforeEnter"
+                            v-on:enter="enter"
+                            v-bind:css="false"
+                    >
+                        <div  v-if="show" class="bardatabox" :data-height="item.height" :style="{backgroundColor:item.color}"></div>
+                    </transition>
+
                 </div>
             </div>
         </div>
         <div class="selfbarbottom">
-            <div class="BarLegendBox"  v-for="item in selfbar.data">
+            <div :class="setClass"  v-for="item in selfbar.data" :title="item.text">
                 <div class="Legend" :style="{backgroundColor:item.color}"></div>
-                <div class="LegendText">{{item.text}}</div>
+                {{item.text}}
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
+    import countup from 'countup';
+    import * as baseic from '../../js/baseic';
+    import Velocity from 'velocity-animate';
     export default {
         name: "selfbar",
         props:['selfbar'],
         data(){
             return {
-
+                number:0,
+                endnum:10000,
+                selfbardata:[],
+                length:this.selfbar.data.length,
+                show:false
+            }
+        },
+        methods:{
+            beforeEnter: function (el) {
+                el.style.height = 0
+            },
+            enter:function(el,done){
+                Velocity(el, { height:el.getAttribute('data-height')+ '%',}, { duration: 1500 })
+            }
+        },
+        computed:{
+            setClass: function(){
+                return 'BarLegendBox BarLegendBox'+this.length;
             }
         },
         created(){
@@ -36,24 +62,33 @@
                     return ;
                 }
             }
-            for(let i=0; i<this.selfbar.data.length;i++){
-                this.selfbar.data[i].formatNum = number(this.selfbar.data[i].num);
-                this.selfbar.data[i].height = (this.selfbar.data[i].num / this.selfbar.data[i].total * 100) > 100 ? 100 :(this.selfbar.data[i].num / this.selfbar.data[i].total * 100);
-
+            this.selfbardata = this.selfbar.data;
+            for(let i=0; i<this.selfbardata.length;i++){
+                this.selfbardata[i].formatNum = number(this.selfbardata[i].num);
+                this.selfbardata[i].height = (this.selfbardata[i].num / this.selfbardata[i].total * 100) > 100 ? 100 :(this.selfbardata[i].num / this.selfbardata[i].total * 100);
+                this.selfbardata[i].id = 'bardatatext'+ baseic.NewID(10);
+            }
+        },
+        mounted(){
+            this.show= true;
+            for(let i = 0; i<this.selfbardata.length;i++){
+                var demo = new countup(this.selfbardata[i].id, 0, this.selfbardata[i].num, 0, 1.5);
+                demo.start();
             }
 
         }
     }
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
     .barbox{
         .selfbarbox{
             padding: 30px 0 20px;
             text-align: center;
             .barfull{
                 display: inline-block;
-                padding: 0px 35px;
+                padding: 0px 10%;
+                width: 10%;
                 position: relative;
             }
             .bardatatext{
@@ -70,14 +105,18 @@
             .barbox{
                 height: 200px;
                 background-color: #f7f7f7;
-                width: 60px;
+                max-width: 60px;
+                width: 100%;
                 border-radius: 30px;
-                vertical-align: bottom;
-                display: table-cell;
+                display: block;
+                margin: 0 auto;
                 line-height: 0;
                 overflow: hidden;
+                position: relative;
                 .bardatatext,.bardatabox{
-                    display: inline-block;
+                    position: absolute;
+                    bottom:0px;
+                    left: 0px;
                 }
 
                 .bardatabox{
@@ -94,9 +133,11 @@
                 display: inline-block;
                 padding: 0 15px;
                 white-space: nowrap;
+                font-size: 14px;
+                color: #666;
                 .Legend{
                     display: inline-block;
-                    vertical-align: middle;
+                    vertical-align: bottom;
                     width: 20px;
                     height: 20px;
                     border-radius: 4px;
@@ -111,5 +152,7 @@
             }
         }
     }
+
+
 
 </style>

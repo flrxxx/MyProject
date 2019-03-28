@@ -46,14 +46,14 @@
                     title:'平台医疗机构数量',
                     data:[
                         {
-                            total:30,
-                            num:12,
+                            total:3000,
+                            num:2300,
                             color:"#6c94f3",
                             text:"已纳入统计数量"
                         },
                         {
-                            total:30,
-                            num:21,
+                            total:3550,
+                            num:201,
                             color:"#4ea7e9",
                             text:"未纳入统计数量"
                         }
@@ -87,7 +87,7 @@
                     data:[
                         {
                             total:100000,
-                            num:100,
+                            num:1000,
                             color:"#57bf9b",
                             text:"辖区人口数"
                         },
@@ -225,8 +225,6 @@
     }
 </script>
 <style scoped lang="less">
-
-
     .pancl-lr{
         margin: 0 -15px;
     }

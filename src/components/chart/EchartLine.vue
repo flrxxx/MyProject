@@ -8,16 +8,13 @@
     require('echarts/lib/chart/line');
     //  引入提示框和title组件
     require('echarts/lib/component/tooltip');
-    //生成随机ID
-    function NewID(length){
-        return Number(Math.random().toString().substr(3,length) + Date.now()).toString(36);
-    }
+    import * as baseic from '../../js/baseic';
     export default {
         name: "EchartLine",
         props:{
             ChartID:{
                 type:String,
-                default:NewID(10),
+                default:baseic.NewID(10),
             },
             ChartOptions:{
                 type:Object,
@@ -35,6 +32,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>

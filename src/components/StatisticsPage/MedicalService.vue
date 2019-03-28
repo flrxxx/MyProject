@@ -15,7 +15,7 @@
                     <div>{{ totalMoney | formatMoney('元')}}</div>
 
                     <div>{{count}}</div>
-
+                    <input type="radio">开启
                     <div>
                         <button @click="incerment" style="width: 50px; height: 50px;">+</button>
                         <button @click="decrment" style="width: 50px; height: 50px;">-</button>

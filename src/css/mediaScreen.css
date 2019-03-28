@@ -1,0 +1,55 @@
+.morenav{display: none;}
+@media screen and (max-width: 1600px) {
+    .header .nav a{
+        display: none;
+    }
+    .nav{
+        text-align: right;
+    }
+    .morenav{
+        display: inline-block;
+        vertical-align: middle;
+        color: #ffffff;
+        text-decoration: none;
+        min-width: 120px;
+        max-width: 14.28%;
+        width: 12%;
+        text-align: center;
+        height: 100px;
+        padding: 20px 0;
+        box-sizing: border-box;
+        font-size: 35px;
+    }
+
+    .barbox .selfbarbottom .BarLegendBox .LegendText{
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .barbox .selfbarbottom .BarLegendBox .Legend{
+        margin-right: 5px;
+        width: 10px;
+        height: 10px;
+        vertical-align: baseline;
+        border-radius: 10px;
+    }
+    .barbox .selfbarbottom .BarLegendBox{
+        display: block;
+        float: left;
+
+        padding:  0 10px;
+        box-sizing: border-box;
+        position: relative;
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .barbox .selfbarbottom .BarLegendBox2{
+        width: 50%;
+    }
+    .barbox .selfbarbottom .BarLegendBox3{
+        width: 33.33333%;
+    }
+}

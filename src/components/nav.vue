@@ -4,6 +4,7 @@
             <i class="icon"><img v-bind:src="item.icon"> </i>
             <font>{{item.text}}</font>
         </router-link>
+        <i class="ylicon ylicon-fenlei morenav"></i>
     </div>
 </template>
 

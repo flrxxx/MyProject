@@ -14,19 +14,30 @@
                 <div class="username" :title="header.user.username">{{header.user.username}}</div>
                 <div class="useraddress" :title="header.user.useraddress">{{header.user.useraddress}}</div>
             </div>
-            <router-link class="logout" :to="header.user.logouturl">
+            <a href="javascript:void(0)" class="logout" @click="loginout">
                 <img src="../image/logout.png">
-            </router-link>
+            </a>
         </div>
     </div>
 </template>
 
 <script>
     import headnav from './nav.vue';
+    import * as login from '../system/login';
     export default {
         name: "headerinfo",
         props:['header'],
-        components:{headnav}
+        components:{headnav},
+        methods:{
+            loginout:function(){
+               login.loginout();
+               this.$message({
+                   message:"退出成功",
+                   type:'success'
+               })
+               this.$router.push('/login');
+            },
+        }
     }
 </script>
 

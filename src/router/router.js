@@ -6,7 +6,7 @@ const notFound={
     template:'<h1>NotFound</h1>'
 }
 
-var router = new Router({
+const router = new Router({
     routes:[
         {
             path:'/',
@@ -68,5 +68,19 @@ var router = new Router({
             ]
         }
     ]
+})
+router.beforeEach((to, from, next) => {
+    // ...
+    const loginID = localStorage.getItem('loginID');
+    if (to.path == '/' || to.path == '/login') {
+        next();
+    }
+    else {
+        if (loginID) {
+            next();
+        } else {
+            router.push({path: '/login'})
+        }
+    }
 })
 export default router;

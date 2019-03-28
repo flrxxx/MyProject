@@ -7,7 +7,7 @@
             <AnimationBox >
                 <div class="title" title="动态组件缓存" slot="title">动态组件缓存</div>
                 <div slot="content">
-                <div class="tabHead" >
+                <div class="tabHead" v-if="show" >
                     <a href="javascript:void(0)"
                        v-for="item in tabs"
                        :key="item.class"
@@ -15,6 +15,7 @@
                        v-on:click="selected = item.class"
                     >{{item.name}}</a>
                 </div>
+                    <button v-on:click="showorhide">显示/隐藏</button>
                 <keep-alive>
                     <component :is="sidebarsTabComponent" :texts="text" :sidebar="sidebar" :check="check" class="whatareyou" style="border:1px solid #197fd3" name="dtzj"></component>
                 </keep-alive>
@@ -30,13 +31,14 @@
 
     function Counter(){
         this.num = 0;
-        this.timer = setInterval( () => {this.num++;console.log(this.num)},1000);
+        // this.timer = setInterval( () => {this.num++;console.log(this.num)},1000);
     }
 
     export default {
         name: "PublicHealth",
         data(){
             return {
+                show:true,
                 tabs:[{
                     name:'tab1',
                     class:'first'
@@ -68,6 +70,16 @@
         computed:{
             sidebarsTabComponent:function(){
                 return this.selected
+            }
+        },
+        methods:{
+            showorhide:function(){
+                if(this.show){
+                    this.show = false;
+                }else{
+                    this.show = true;
+                }
+
             }
         },
         mounted(){

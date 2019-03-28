@@ -52,9 +52,9 @@
                         }
                     ],
                     user:{
-                        userimg:require('../image/user.png'),
-                        username:'测试账号',
-                        useraddress:'沈阳金豪研发中心沈阳金豪研发中心',
+                        userimg:this.$store.state.user.userimg,
+                        username:this.$store.state.user.username,
+                        useraddress:this.$store.state.user.useraddress,
                         logouturl:'/login'
                     }
                 },

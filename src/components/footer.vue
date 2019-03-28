@@ -21,3 +21,6 @@
 <style scoped lang="less">
     @import '../less/footer.less';
 </style>
+<style>
+    @import '../css/mediaScreen.css';
+</style>
