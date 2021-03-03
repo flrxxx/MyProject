@@ -4,7 +4,6 @@
             <div class="barfull" v-for="item in selfbar.data" >
                 <div class="bardatatext" :style="{color:item.color,bottom:item.height + '%'}" :id="item.id">{{item.formatNum}}</div>
                 <div class="barbox"  :title="item.formatNum">
-
                     <transition
                             v-on:before-enter="beforeEnter"
                             v-on:enter="enter"
@@ -12,7 +11,6 @@
                     >
                         <div  v-if="show" class="bardatabox" :data-height="item.height" :style="{backgroundColor:item.color}"></div>
                     </transition>
-
                 </div>
             </div>
         </div>

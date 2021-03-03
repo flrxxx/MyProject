@@ -35,7 +35,7 @@
             }
         },
         mounted(){
-
+            console.log("出发了吗？")
         }
     }
 </script>

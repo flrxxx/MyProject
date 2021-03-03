@@ -35,6 +35,7 @@
     import component2 from '../com/component2.vue'
     import {mapState} from 'vuex'
     import {mapGetters} from 'vuex'
+
     export default {
         name: "MedicalService",
         data: function() {

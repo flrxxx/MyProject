@@ -80,7 +80,7 @@ router.beforeEach((to, from, next) => {
             next();
         } else {
             router.push({path: '/login'})
-        }
+        }navoutside
     }
 })
 export default router;

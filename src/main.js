@@ -4,8 +4,9 @@ import router from './router/router';
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui';
 import AnimationBox from './components/chart/AnimationBox.vue';
+import hello from 'hello_test_xzl';
 
-
+console.log(hello.sayhello());
 
 import store from './store/store.js';
 

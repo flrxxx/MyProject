@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "hello_test_xzl": "0.0.1",
     "webpack": "^4.22.0"
   },
   "devDependencies": {
